@@ -1,164 +1,257 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Sexetop - Vendeurs Premium</title>
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    background: #f9f9f9;
-    margin: 0; padding: 20px;
-  }
-  nav {
-    display: flex;
-    gap: 20px;
-    margin-bottom: 20px;
-  }
-  nav button {
-    background: #1e90ff;
-    color: white;
-    border: none;
-    padding: 10px 16px;
-    cursor: pointer;
-    border-radius: 5px;
-    font-size: 1rem;
-  }
-  nav button.active {
-    background: #155dbb;
-  }
-  .hidden {
-    display: none;
-  }
-  h1 {
-    color: #222;
-  }
-  /* Planes */
-  .plans {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  .plan {
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    width: 250px;
-    box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
-    text-align: center;
-  }
-  .plan h2 {
-    margin-top: 0;
-    color: #444;
-  }
-  .prix {
-    font-size: 2rem;
-    color: #1e90ff;
-    margin: 10px 0;
-  }
-  .duree {
-    font-size: 1rem;
-    color: #666;
-    margin-bottom: 20px;
-  }
-  button.plan-acheter {
-    background-color: #1e90ff;
-    border: none;
-    color: white;
-    padding: 10px 18px;
-    font-size: 1rem;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  button.plan-acheter:hover {
-    background-color: #155dbb;
-  }
-
-  /* Formulario subida perfil */
-  #upload-section {
-    background: white;
-    padding: 20px;
-    max-width: 400px;
-    margin: 20px auto;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
-  }
-  #upload-section input[type="file"],
-  #upload-section textarea {
-    width: 100%;
-    margin-bottom: 10px;
-  }
-  #upload-section button {
-    background: #28a745;
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  #upload-section button:hover {
-    background: #1e7e34;
-  }
-
-  /* Modèles */
-  #models-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-  }
-  .model-card {
-    background: white;
-    padding: 10px;
-    width: 150px;
-    text-align: center;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgb(0 0 0 / 0.1);
-  }
-  .model-card img {
-    width: 100%;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 50%;
-    margin-bottom: 8px;
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sexetop - Plateforme de services</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0; padding: 0;
+      background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1350&q=80') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+    }
+    nav {
+      background-color: rgba(0,0,0,0.7);
+      display: flex;
+      justify-content: space-around;
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      cursor: pointer;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+    }
+    nav a:hover, nav a.active {
+      background-color: #ff4081;
+    }
+    section {
+      padding: 20px;
+      max-width: 900px;
+      margin: 20px auto;
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 10px;
+      min-height: 400px;
+    }
+    input, textarea {
+      width: 100%;
+      margin: 8px 0;
+      padding: 8px;
+      border-radius: 5px;
+      border: none;
+    }
+    button {
+      background-color: #ff4081;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    img.profile-pic {
+      max-width: 150px;
+      border-radius: 50%;
+      display: block;
+      margin: 10px 0;
+    }
+    .profile-card {
+      background: rgba(255, 255, 255, 0.1);
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 10px;
+    }
+  </style>
 </head>
 <body>
+  <nav>
+    <a id="menu-vip" class="active">VIP</a>
+    <a id="menu-models">Modèles</a>
+    <a id="menu-nearby">Près de toi</a>
+    <a id="menu-chat">Chat</a>
+  </nav>
 
-<nav>
-  <button id="tab-plans" class="active">Plans Premium</button>
-  <button id="tab-models">Modèles</button>
-</nav>
+  <section id="content">
+    <!-- Le contenu change selon l'onglet -->
+  </section>
 
-<!-- Plans -->
-<section id="plans-section">
-  <h1>Plans Premium Sexetop</h1>
-  <div class="plans">
-    <div class="plan">
-      <h2>Plan Argent</h2>
-      <div class="prix">19€</div>
-      <div class="duree">2 jours</div>
-      <button class="plan-acheter" onclick="acheterPlan('Argent', 19, 2)">Acheter</button>
-    </div>
-    <div class="plan">
-      <h2>Plan Or</h2>
-      <div class="prix">60€</div>
-      <div class="duree">1 semaine</div>
-      <button class="plan-acheter" onclick="acheterPlan('Or', 60, 7)">Acheter</button>
-    </div>
-    <div class="plan">
-      <h2>Plan VIP</h2>
-      <div class="prix">199€</div>
-      <div class="duree">1 mois</div>
-      <button class="plan-acheter" onclick="acheterPlan('VIP', 199, 30)">Acheter</button>
-    </div>
-  </div>
+  <script>
+    const content = document.getElementById('content');
 
-  <div id="message" style="margin-top:20px; color:green;"></div>
+    // Profils sauvegardés localement dans le navigateur
+    let profiles = JSON.parse(localStorage.getItem('profiles') || '[]');
 
-  <!-- Sección subir perfil para premium -->
-  <div id="upload-section" class="hidden">
-    <h2>Uploader votre photo et description</h2>
-    <input type="file" id="photo-upload" accept="image/*" />
+    // Afficher VIP avec plans et formulaire
+    function showVIP() {
+      content.innerHTML = `
+        <h2>Choisissez votre plan Premium</h2>
+        <div>
+          <button onclick="choosePlan('Platine', 19, 2)">Platine - 19€ (2 jours)</button>
+          <button onclick="choosePlan('Or', 60, 7)">Or - 60€ (1 semaine)</button>
+          <button onclick="choosePlan('VIP', 199, 30)">VIP - 199€ (1 mois)</button>
+        </div>
+        <div id="profileFormContainer"></div>
+      `;
+    }
+
+    // Afficher formulaire pour créer un profil
+    function choosePlan(planName, price, days) {
+      const formHtml = `
+        <h3>Plan choisi : ${planName} - ${price}€</h3>
+        <form id="profileForm">
+          <label>Nom :</label>
+          <input type="text" id="name" required />
+          <label>Description :</label>
+          <textarea id="description" rows="3" required></textarea>
+          <label>Photo de profil :</label>
+          <input type="file" id="photo" accept="image/*" required />
+          <button type="submit">Simuler paiement et enregistrer</button>
+        </form>
+        <div id="message"></div>
+      `;
+      document.getElementById('profileFormContainer').innerHTML = formHtml;
+
+      const form = document.getElementById('profileForm');
+      form.onsubmit = function(e) {
+        e.preventDefault();
+
+        const name = document.getElementById('name').value.trim();
+        const description = document.getElementById('description').value.trim();
+        const photoInput = document.getElementById('photo');
+
+        if (!name || !description || photoInput.files.length === 0) {
+          alert('Veuillez remplir tous les champs');
+          return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = function() {
+          // Enregistrer profil dans localStorage
+          const profile = {
+            id: Date.now(),
+            name,
+            description,
+            photo: reader.result,
+            plan: planName,
+            price,
+            days,
+            date: new Date().toISOString(),
+            comments: []
+          };
+          profiles.push(profile);
+          localStorage.setItem('profiles', JSON.stringify(profiles));
+
+          document.getElementById('message').textContent = 'Profil enregistré et paiement simulé avec succès !';
+          form.reset();
+          document.getElementById('profileFormContainer').innerHTML = '';
+          showModels(); // Met à jour la liste
+        };
+        reader.readAsDataURL(photoInput.files[0]);
+      };
+    }
+
+    // Afficher la liste des modèles premium
+    function showModels() {
+      if(profiles.length === 0) {
+        content.innerHTML = '<h2>Aucun modèle premium enregistré.</h2>';
+        return;
+      }
+
+      let html = '<h2>Modèles Premium</h2>';
+      profiles.forEach(profile => {
+        html += `
+          <div class="profile-card" onclick="showProfile(${profile.id})" style="cursor:pointer;">
+            <img src="${profile.photo}" class="profile-pic" alt="Photo de ${profile.name}" />
+            <h3>${profile.name} (${profile.plan})</h3>
+            <p>${profile.description.substring(0, 100)}...</p>
+          </div>
+        `;
+      });
+      content.innerHTML = html + '<button onclick="showVIP()">Retour VIP</button>';
+    }
+
+    // Afficher profil détaillé avec commentaires
+    function showProfile(id) {
+      const profile = profiles.find(p => p.id === id);
+      if (!profile) return;
+
+      let commentsHtml = '';
+      if(profile.comments.length === 0) {
+        commentsHtml = '<p>Aucun commentaire pour l\'instant.</p>';
+      } else {
+        commentsHtml = '<ul>';
+        profile.comments.forEach((c, i) => {
+          commentsHtml += `<li>${c}</li>`;
+        });
+        commentsHtml += '</ul>';
+      }
+
+      content.innerHTML = `
+        <button onclick="showModels()">← Retour aux modèles</button>
+        <h2>${profile.name} (${profile.plan})</h2>
+        <img src="${profile.photo}" class="profile-pic" alt="Photo de ${profile.name}" />
+        <p>${profile.description}</p>
+        <h3>Commentaires :</h3>
+        ${commentsHtml}
+        <form id="commentForm">
+          <textarea id="commentInput" rows="2" placeholder="Laisser un commentaire..." required></textarea>
+          <button type="submit">Envoyer</button>
+        </form>
+      `;
+
+      const commentForm = document.getElementById('commentForm');
+      commentForm.onsubmit = function(e) {
+        e.preventDefault();
+        const commentText = document.getElementById('commentInput').value.trim();
+        if(commentText) {
+          profile.comments.push(commentText);
+          localStorage.setItem('profiles', JSON.stringify(profiles));
+          showProfile(id);
+        }
+      };
+    }
+
+    // Afficher carte simple (sans utilisateurs)
+    function showNearby() {
+      content.innerHTML = `
+        <h2>Près de toi</h2>
+        <p>Cette fonctionnalité nécessite un backend pour fonctionner pleinement.</p>
+        <iframe
+          src="https://www.google.com/maps/embed/v1/view?key=YOUR_GOOGLE_MAPS_API_KEY&center=48.8566,2.3522&zoom=12"
+          style="border:0; width:100%; height:400px;"
+          allowfullscreen
+          loading="lazy"></iframe>
+      `;
+    }
+
+    // Afficher chat simulé
+    function showChat() {
+      content.innerHTML = `
+        <h2>Chat libre</h2>
+        <p>Fonctionnalité non disponible sans serveur.</p>
+      `;
+    }
+
+    // Gestion du menu et navigation
+    function setActive(id) {
+      document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+
+    document.getElementById('menu-vip').onclick = () => { setActive('menu-vip'); showVIP(); };
+    document.getElementById('menu-models').onclick = () => { setActive('menu-models'); showModels(); };
+    document.getElementById('menu-nearby').onclick = () => { setActive('menu-nearby'); showNearby(); };
+    document.getElementById('menu-chat').onclick = () => { setActive('menu-chat'); showChat(); };
+
+    // Chargement initial
+    showVIP();
+  </script>
+</body>
+</html>
