@@ -1,42 +1,107 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Sexetop - Servicios Premium</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sexetop - Planes Premium</title>
   <style>
-    body { font-family: sans-serif; padding: 20px; background: #fafafa; }
-    header { background: #000; color: #fff; padding: 10px 20px; text-align: center; }
-    .service-card { border: 1px solid #ccc; padding: 15px; margin: 10px 0; background: #fff; }
-    .premium { border-left: 5px solid gold; }
-    .btn { background: #000; color: #fff; padding: 10px 15px; text-decoration: none; }
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      margin: 0; padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    h1 {
+      color: #222;
+    }
+    .planes {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 20px;
+    }
+    .plan {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      width: 250px;
+      box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
+      text-align: center;
+      transition: box-shadow 0.3s ease;
+    }
+    .plan:hover {
+      box-shadow: 0 4px 15px rgb(0 0 0 / 0.2);
+    }
+    .plan h2 {
+      margin-top: 0;
+      color: #444;
+    }
+    .precio {
+      font-size: 2rem;
+      color: #1e90ff;
+      margin: 10px 0;
+    }
+    .duracion {
+      font-size: 1rem;
+      color: #666;
+      margin-bottom: 20px;
+    }
+    button {
+      background-color: #1e90ff;
+      border: none;
+      color: white;
+      padding: 10px 18px;
+      font-size: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+    button:hover {
+      background-color: #155dbb;
+    }
+    #mensaje {
+      margin-top: 30px;
+      font-weight: bold;
+      color: green;
+    }
   </style>
 </head>
 <body>
-
-  <header>
-    <h1>Sexetop</h1>
-    <p>Promociona tus servicios premium</p>
-    <a class="btn" href="vender.html">Publicar servicio</a>
-  </header>
-
-  <main id="servicios">
-    <h2>Servicios destacados</h2>
-
-    <div class="service-card premium">
-      <h3>👠 Masaje relajante VIP</h3>
-      <p>Zona: Madrid Centro</p>
-      <p>Precio: 80€/hora</p>
-      <p>Contacto: <a href="https://wa.me/34612345678" target="_blank">WhatsApp</a></p>
+  <h1>Planes Premium Sexetop</h1>
+  <div class="planes">
+    <div class="plan">
+      <h2>Plan Plata</h2>
+      <div class="precio">19€</div>
+      <div class="duracion">2 días</div>
+      <button onclick="comprarPlan('Plata', 19, 2)">Comprar</button>
     </div>
-
-    <div class="service-card">
-      <h3>💃 Show privado en hotel</h3>
-      <p>Zona: Sevilla</p>
-      <p>Precio: 120€/hora</p>
-      <p>Contacto: <a href="mailto:contacto@example.com">contacto@example.com</a></p>
+    <div class="plan">
+      <h2>Plan Oro</h2>
+      <div class="precio">60€</div>
+      <div class="duracion">1 semana</div>
+      <button onclick="comprarPlan('Oro', 60, 7)">Comprar</button>
     </div>
-  </main>
+    <div class="plan">
+      <h2>Plan VIP</h2>
+      <div class="precio">199€</div>
+      <div class="duracion">1 mes</div>
+      <button onclick="comprarPlan('VIP', 199, 30)">Comprar</button>
+    </div>
+  </div>
 
+  <div id="mensaje"></div>
+
+  <script>
+    function comprarPlan(nombre, precio, dias) {
+      // Aquí pondrías la integración con Stripe para pagos reales
+      // Por ahora, solo mostramos un mensaje
+      const mensaje = `Has seleccionado el plan ${nombre} por ${precio}€ válido durante ${dias} días. Próximamente podrás pagar con Stripe.`;
+      document.getElementById('mensaje').textContent = mensaje;
+      console.log(mensaje);
+    }
+  </script>
 </body>
 </html>
