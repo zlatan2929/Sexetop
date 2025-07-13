@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Chat - Sexetop</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h2>Chat Public</h2>
+  <div id="chat-box"></div>
+  <input type="text" id="msg" placeholder="Tapez votre message...">
+  <button onclick="sendMessage()">Envoyer</button>
+
+  <script src="supabase.js"></script>
+  <script>
+    const box = document.getElementById('chat-box');
+    const input = document.getElementById('msg');
+
+    supabase.from('chat').on('INSERT', payload => {
+      const msg = document.createElement('p');
+      msg.textContent = payload.new.message;
+      box.appendChild(msg);
+    }).subscribe();
+
+    function sendMessage() {
+      supabase.from('chat').insert({ message: input.value });
+      input.value = '';
+    }
+  </script>
+</body>
+</html>
