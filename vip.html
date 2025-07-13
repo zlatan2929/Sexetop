@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Plans VIP - Sexetop</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h2>Choisissez votre plan VIP</h2>
+  <div class="plans">
+    <div class="plan">
+      <h3>Silver</h3>
+      <p>1 jour - 19€</p>
+      <button onclick="checkout('price_1RiaoYDWX9imnUUqDeNiwoKs')">Acheter</button>
+    </div>
+    <div class="plan">
+      <h3>Gold</h3>
+      <p>7 jours - 60€</p>
+      <button onclick="checkout('price_1Riap3DWX9imnUUqvSv2Do9R')">Acheter</button>
+    </div>
+    <div class="plan">
+      <h3>VIP</h3>
+      <p>30 jours - 199€</p>
+      <button onclick="checkout('price_1RiapNDWX9imnUUqzq6WqnTO')">Acheter</button>
+    </div>
+  </div>
+
+  <script src="https://js.stripe.com/v3/"></script>
+  <script>
+    const stripe = Stripe("VOTRE_CLE_PUBLIC_STRIPE");
+    function checkout(priceId) {
+      stripe.redirectToCheckout({
+        lineItems: [{ price: priceId, quantity: 1 }],
+        mode: 'subscription',
+        successUrl: window.location.origin + '/models.html',
+        cancelUrl: window.location.origin + '/vip.html'
+      });
+    }
+  </script>
+</body>
+</html>
